@@ -60,39 +60,5 @@ def get_itinerary(itinerary_id: int, db: Session = Depends(get_db)):
     
 # GET: Get recommended itineraries
 @router.get("/recommendations/{nights}", response_model=List[ItineraryResponse])
-# def recommend_itineraries(
-#     nights: int, 
-#     db: Session = Depends(get_db)
-# ):
-#     """
-#     Endpoint to get recommended itineraries based on the number of nights.
-#     """
-#     # Validation: Ensure that nights is within a reasonable range (e.g., 2 to 8)
-#     if nights < 2 or nights > 8:
-#         raise HTTPException(
-#             status_code=400,
-#             detail="The number of nights must be between 2 and 8."
-#         )
-
-#     try:
-#         # Call the recommender function
-#         itineraries = recommend_itineraries_by_nights(db, nights)
-
-#         if not itineraries:
-#             raise HTTPException(
-#                 status_code=404,
-#                 detail=f"No itineraries found for {nights} nights"
-#             )
-
-#     except Exception as e:
-#         # Log the error if needed
-#         raise HTTPException(
-#             status_code=500,
-#             detail="Internal Server Error - Unable to retrieve itineraries"
-#         )
-    
-#     return itineraries
-
-
 def get_recommendations(nights: int, db: Session = Depends(get_db)):
     return recommend_itineraries_by_nights(db, nights)

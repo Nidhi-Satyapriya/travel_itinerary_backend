@@ -1,6 +1,5 @@
 from typing import List, Optional
-from pydantic import BaseModel, Field
-
+from pydantic import BaseModel, Field 
 
 # Activity model for input (creation)
 class ActivitySchema(BaseModel):
@@ -28,8 +27,9 @@ class HotelResponse(BaseModel):
     address: Optional[str] = None
     rating: Optional[int] = None
 
-    class Config:
-        orm_mode = True
+    model_config = {
+        'from_attributes': True
+    }
 
 
 # Transfer model for response
@@ -39,15 +39,17 @@ class TransferResponse(BaseModel):
     from_location: str
     to_location: str
 
-    class Config:
-        orm_mode = True
+    model_config = {
+        'from_attributes': True
+    }
 
 # Activity model for response
 class ActivityResponse(ActivitySchema):
     id: int
 
-    class Config:
-        form_attributes = True
+    model_config = {
+        'from_attributes': True
+    }
 
 
 # Day model for response
@@ -58,8 +60,9 @@ class DayResponse(BaseModel):
     transfer: Optional[str]
     activities: List[ActivityResponse]
 
-    class Config:
-        orm_mode = True
+    model_config = {
+        'from_attributes': True
+    }
 
 
 # Itinerary model for response
@@ -67,7 +70,8 @@ class ItineraryResponse(BaseModel):
     id: int
     name: str
     nights: int
-    days: List[DayResponse]
+    days: List[DayResponse] 
 
-    class Config:
-        orm_mode = True
+    model_config = {
+        'from_attributes': True
+    }

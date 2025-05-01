@@ -3,6 +3,15 @@ from travel_backend.api.routes import router
 from travel_backend.db.db_setup import engine
 from travel_backend.models.base import Base
 
+
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,  # Set to DEBUG to capture all logs
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+)
+
+
 Base.metadata.create_all(bind=engine)
 
 # Create the FastAPI app instance
